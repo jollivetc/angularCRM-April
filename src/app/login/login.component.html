@@ -1,17 +1,21 @@
 <div>
   <form [formGroup]="loginForm" (ngSubmit)="submit()">
     <p>
-      <label for="login">Login</label>
-      <input id="login" type="text" formControlName="login">
+      <mat-form-field>
+        <mat-label for="login">Login</mat-label>
+        <input matInput id="login" type="text" formControlName="login">
+      </mat-form-field>
       <span *ngIf="loginForm.get('login')?.touched && loginForm.get('login')?.errors">
         <span *ngIf="loginForm.get('login')?.errors?.['required']"> Enter you login</span>
         <span *ngIf="loginForm.get('login')?.errors?.['minlength']"> More than 2 characteres</span>
       </span>
     </p>
     <p>
-      <label for="password">Password</label>
-      <input id="password" type="password" formControlName="password">
+      <mat-form-field>
+        <mat-label for="password">Password</mat-label>
+        <input matInput id="password" type="password" formControlName="password">
+      </mat-form-field>
     </p>
-    <button type="submit" [disabled]="loginForm.invalid">Log in</button>
+    <button mat-button color="primary" type="submit" [disabled]="loginForm.invalid">Log in</button>
   </form>
 </div>
