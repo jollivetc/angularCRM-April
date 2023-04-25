@@ -9,6 +9,10 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators }
 export class LoginComponent {
 
   loginForm:FormGroup;
+  loginErrorMessages = {
+                  required: 'Enter you login',
+                  minlength: 'More than 2 characteres'
+                };
 
   constructor(){
     this.loginForm = new FormGroup({

@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title:string = 'angularCRM';
 
+  wasClicked($event:string):void{
+    console.log($event)
+  }
 }

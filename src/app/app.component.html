@@ -6,7 +6,7 @@
   </mat-toolbar>
 </div>
 
-
-
 <crm-login></crm-login>
 
+<crm-dummy label="Hello" (clicked)="wasClicked($event)"></crm-dummy>
+<crm-dummy [label]="title" (clicked)="wasClicked($event)"></crm-dummy>
