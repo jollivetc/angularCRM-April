@@ -1,22 +1,4 @@
 <span>{{ title }} app is running!</span>
-<p>
-  {{cat.firstname}}
-</p>
-<p>
-  Compteur : {{counter}}
-  <button (click)="count($event)">Click me</button>
-</p>
-<ul>
-  <li *ngFor="let fruit of fruits.sort(); let isOdd=odd; let isfirst=first, let i=index"
-      [ngClass]="{myclass:isOdd, myfirst:isfirst }">{{ i+1 + ' '+ fruit}}</li>
-</ul>
 
-<ul>
-  <ng-template ngfor [ngForOf]="fruits" let-fruit>
-    <li>
-    {{fruit}}
-    </li>
-  </ng-template>
-</ul>
-
+<crm-login></crm-login>
 
