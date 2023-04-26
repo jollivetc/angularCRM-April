@@ -9,13 +9,15 @@ import { LoginComponent } from './login/login.component';
 import { CrmMaterialModule } from './crm-material.module';
 import { DummyComponent } from './component/dummy/dummy.component';
 import { HelpComponent } from './component/help/help.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DummyComponent,
-    HelpComponent
+    HelpComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
