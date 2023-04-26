@@ -1,21 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthenticationService } from './authentication.service';
 import { Router } from '@angular/router';
 import { User } from './model/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'crm-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy{
 
   loginForm:FormGroup;
   loginErrorMessages = {
                   required: 'Enter you login',
                   minlength: 'More than 2 characteres'
                 };
+  private subs:Subscription[]= []
 
   constructor(private authent:AuthenticationService, private router:Router){
     if(this.authent.isAuthenticated()){
@@ -26,14 +28,18 @@ export class LoginComponent {
       password: new FormControl('', [Validators.required, checkNo$InPassword])
     });
   }
+  ngOnDestroy(): void {
+    this.subs.forEach(s=>s.unsubscribe());
+  }
 
   submit():void{
-    this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password)
+    const sub:Subscription = this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password)
       .subscribe({
         next:(value:User)=>{this.router.navigateByUrl('/home');},
         error:(error:Error)=>{alert(JSON.stringify(error))},
         complete:()=>{}
       })
+    this.subs.push(sub);
   }
 }
 
