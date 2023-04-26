@@ -17,6 +17,9 @@ export class LoginComponent {
                 };
 
   constructor(private authent:AuthenticationService, private router:Router){
+    if(this.authent.isAuthenticated()){
+      this.authent.disconnect();
+    }
     this.loginForm = new FormGroup({
       login: new FormControl('', [Validators.required, Validators.minLength(3)]),
       password: new FormControl('', [Validators.required, checkNo$InPassword])
