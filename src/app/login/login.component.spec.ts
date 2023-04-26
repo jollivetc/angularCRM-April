@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async, waitForAsync } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,9 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create',() => {
     expect(component).toBeTruthy();
   });
+
+  it('ce que fait le test', waitForAsync(()=>{}))
 });
