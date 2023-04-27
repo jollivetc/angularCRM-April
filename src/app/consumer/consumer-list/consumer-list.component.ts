@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Consumer } from '../model/consumer';
 import { ConsumerService } from '../consumer .service';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'crm-consumer-list',
@@ -10,7 +11,7 @@ import { ConsumerService } from '../consumer .service';
 })
 export class ConsumerListComponent implements OnInit{
 
-  search?:string;
+  search:string='';
   consumers?:Observable<Consumer[]>
 
   constructor(private consumerService:ConsumerService){}
@@ -20,9 +21,15 @@ export class ConsumerListComponent implements OnInit{
   }
 
   doSearch():void{
-    this.consumers = this.consumerService.findConsumers(this.search!);
+    this.consumers = this.consumerService.findConsumers(this.search);
   }
 
-
+  deleteConsumer(id:number):void{
+    this.consumerService.deleteConsumer(id).subscribe({
+      next:(value:object)=>{this.doSearch()},
+      error:(error:Error)=>{console.error(error)},
+      complete:()=>{}
+    })
+  }
 
 }

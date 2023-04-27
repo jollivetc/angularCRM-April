@@ -12,6 +12,7 @@
     <th>Lastname</th>
     <th>phone</th>
     <th>email</th>
+    <th>actions</th>
   </tr>
   <tr *ngFor="let consumer of consumers | async">
     <td>{{consumer.civility}}</td>
@@ -19,6 +20,15 @@
     <td>{{consumer.lastname}}</td>
     <td>{{consumer.email}}</td>
     <td>{{consumer.phone | phone}}</td>
+    <td>
+      <a mat-icon-button matTooltip="Edit Consumer"
+        [routerLink]="['/consumer-detail', consumer.id]">
+        <mat-icon>edit</mat-icon>
+      </a>
+      <button mat-button (click)="deleteConsumer(consumer.id!)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
   </tr>
 </table>
 

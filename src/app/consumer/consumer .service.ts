@@ -18,7 +18,17 @@ export class ConsumerService {
     return this.http.get<Consumer[]>(`/api/consumers?q=${search}`);
   }
 
-  save(consumer:Consumer):Observable<any>{
-    return this.http.post<any>('/api/consumers', consumer);
+  save(consumer:Consumer):Observable<Consumer>{
+    if(consumer.id){
+      return this.http.put<Consumer>(`/api/consumers/${consumer.id}`, consumer);
+    }
+    return this.http.post<Consumer>('/api/consumers', consumer);
+  }
+
+  getConsumer(id:string):Observable<Consumer>{
+    return this.http.get<Consumer>(`/api/consumers/${id}`);
+  }
+  deleteConsumer(id:number):Observable<object>{
+    return this.http.delete<object>(`/api/consumers/${id}`)
   }
 }
